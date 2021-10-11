@@ -1,0 +1,455 @@
+% reference files for adaptive design lit review
+
+@article{zhou2008bayesian,
+	title={Bayesian adaptive design for targeted therapy development in lung cancer—a step toward personalized medicine},
+	author={Zhou, Xian and Liu, Suyu and Kim, Edward S and Herbst, Roy S and Lee, J Jack},
+	journal={Clinical Trials},
+	volume={5},
+	number={3},
+	pages={181--193},
+	year={2008},
+	publisher={SAGE Publications Sage UK: London, England}
+}
+
+@article{smith2006implementation,
+	title={Implementation of a Bayesian adaptive design in a proof of concept study},
+	author={Smith, Michael K and Jones, Ieuan and Morris, Mark F and Grieve, Andrew P and Tan, Keith},
+	journal={Pharmaceutical Statistics: The Journal of Applied Statistics in the Pharmaceutical Industry},
+	volume={5},
+	number={1},
+	pages={39--50},
+	year={2006},
+	publisher={Wiley Online Library}
+}
+
+@article{chang2005hybrid,
+	title={A hybrid Bayesian adaptive design for dose response trials},
+	author={Chang, Mark and Chow, Shein-Chung},
+	journal={Journal of Biopharmaceutical Statistics},
+	volume={15},
+	number={4},
+	pages={677--691},
+	year={2005},
+	publisher={Taylor \& Francis}
+}
+
+
+
+% specifically on vaccine safety surveillance
+@article{li2020bayesian,
+  title={A Bayesian approach to sequential analysis in post-licensure vaccine safety surveillance},
+  author={Li, Rongxia and Stewart, Brock and Rose, Charles},
+  journal={Pharmaceutical statistics},
+  volume={19},
+  number={3},
+  pages={291--302},
+  year={2020},
+  publisher={Wiley Online Library}
+}
+
+% interesting method using MV normal approximation within SMC
+% includes model choice & design choice
+@article{senarathne2020laplace,
+	title={A Laplace-based algorithm for Bayesian adaptive design},
+	author={Senarathne, SGJ and Drovandi, Christopher C and McGree, James M},
+	journal={Statistics and Computing},
+	volume={30},
+	number={5},
+	pages={1183--1208},
+	year={2020},
+	publisher={Springer}
+}
+
+% model selection + group sequential design
+@article{wathen2008bayesian,
+  title={Bayesian adaptive model selection for optimizing group sequential clinical trials},
+  author={Wathen, J Kyle and Thall, Peter F},
+  journal={Statistics in medicine},
+  volume={27},
+  number={27},
+  pages={5586--5604},
+  year={2008},
+  publisher={Wiley Online Library}
+}
+
+% classic big papers on model selection/averaging
+@article{raftery1995bayesian,
+  title={Bayesian model selection in social research},
+  author={Raftery, Adrian E},
+  journal={Sociological methodology},
+  pages={111--163},
+  year={1995},
+  publisher={JSTOR}
+}
+
+@article{stephan2009bayesian,
+  title={Bayesian model selection for group studies},
+  author={Stephan, Klaas Enno and Penny, Will D and Daunizeau, Jean and Moran, Rosalyn J and Friston, Karl J},
+  journal={Neuroimage},
+  volume={46},
+  number={4},
+  pages={1004--1017},
+  year={2009},
+  publisher={Elsevier}
+}
+
+@article{wasserman2000bayesian,
+  title={Bayesian model selection and model averaging},
+  author={Wasserman, Larry},
+  journal={Journal of mathematical psychology},
+  volume={44},
+  number={1},
+  pages={92--107},
+  year={2000},
+  publisher={Elsevier}
+}
+
+@article{chipman2001practical,
+  title={The practical implementation of Bayesian model selection},
+  author={Chipman, Hugh and George, Edward I and McCulloch, Robert E and Clyde, Merlise and Foster, Dean P and Stine, Robert A},
+  journal={Lecture Notes-Monograph Series},
+  pages={65--134},
+  year={2001},
+  publisher={JSTOR}
+}
+
+% a multi-outcome method
+% essentially multinomial data model
+% + simple stopping rules
+@article{thall1995bayesian,
+	title={Bayesian sequential monitoring designs for single-arm clinical trials with multiple outcomes},
+	author={Thall, Peter F and Simon, Richard M and Estey, Elihu H},
+	journal={Statistics in medicine},
+	volume={14},
+	number={4},
+	pages={357--379},
+	year={1995},
+	publisher={Wiley Online Library}
+}
+
+% the Berry et al big book
+@book{berry2010bayesian,
+	title={Bayesian adaptive methods for clinical trials},
+	author={Berry, Scott M and Carlin, Bradley P and Lee, J Jack and Muller, Peter},
+	year={2010},
+	publisher={CRC press}
+}
+
+% a psych paper on sequential Bayes factor testing 
+% very nice narrative & simulations to investigate
+% (1) type I and II error rates, (2) power (in terms of expected sample size), and (3) effect estimate bias
+@article{schonbrodt2017sequential,
+	title={Sequential hypothesis testing with Bayes factors: Efficiently testing mean differences.},
+	author={Sch{\"o}nbrodt, Felix D and Wagenmakers, Eric-Jan and Zehetleitner, Michael and Perugini, Marco},
+	journal={Psychological methods},
+	volume={22},
+	number={2},
+	pages={322},
+	year={2017},
+	publisher={American Psychological Association}
+}
+
+
+% control Type I error (address multiplicity??) for Bayesian sequential design
+% try to match operating characteristics to frequentist group sequential design
+% w/ calibration of each stage alpha-spending using asymptotic properties
+% mainly on binary and normal outcomes
+@article{shi2019control,
+	title={Control of type I error rates in Bayesian sequential designs},
+	author={Shi, Haolun and Yin, Guosheng},
+	journal={Bayesian Analysis},
+	volume={14},
+	number={2},
+	pages={399--425},
+	year={2019},
+	publisher={International Society for Bayesian Analysis}
+}
+
+% the modified SPRT (based on UMPBT-derived alternatives)
+% only works for z, t tests & binomial porportions, chi-square tests
+% but works well
+@article{pramanik2021modified,
+	title={A modified sequential probability ratio test},
+	author={Pramanik, Sandipan and Johnson, Valen E and Bhattacharya, Anirban},
+	journal={Journal of Mathematical Psychology},
+	volume={101},
+	pages={102505},
+	year={2021},
+	publisher={Elsevier}
+}
+
+
+
+% joint estimation + detection
+@article{reinhard2018bayesian,
+	title={Bayesian sequential joint detection and estimation},
+	author={Reinhard, Dominik and Fau{\ss}, Michael and Zoubir, Abdelhak M},
+	journal={Sequential Analysis},
+	volume={37},
+	number={4},
+	pages={530--570},
+	year={2018},
+	publisher={Taylor \& Francis}
+}
+
+
+% multiple testing within Bayesian framework
+
+@article{gopalan1998bayesian,
+  title={Bayesian multiple comparisons using Dirichlet process priors},
+  author={Gopalan, Ramanan and Berry, Donald A},
+  journal={Journal of the American Statistical Association},
+  volume={93},
+  number={443},
+  pages={1130--1139},
+  year={1998},
+  publisher={Taylor \& Francis}
+}
+@article{berry1999bayesian,
+  title={Bayesian perspectives on multiple comparisons},
+  author={Berry, Donald A and Hochberg, Yosef},
+  journal={Journal of Statistical Planning and Inference},
+  volume={82},
+  number={1-2},
+  pages={215--227},
+  year={1999},
+  publisher={Elsevier}
+}
+@article{scott2006exploration,
+  title={An exploration of aspects of Bayesian multiple testing},
+  author={Scott, James G and Berger, James O},
+  journal={Journal of statistical planning and inference},
+  volume={136},
+  number={7},
+  pages={2144--2162},
+  year={2006},
+  publisher={Elsevier}
+}
+@article{labbe2007multiple,
+  title={Multiple testing using the posterior probabilities of directional alternatives, with application to genomic studies},
+  author={Labbe, Aur{\'e}lie and Thompson, Mary E},
+  journal={Canadian Journal of Statistics},
+  volume={35},
+  number={1},
+  pages={51--68},
+  year={2007},
+  publisher={Wiley Online Library}
+}
+
+@article{guindani2009bayesian,
+  title={A Bayesian discovery procedure},
+  author={Guindani, Michele and M{\"u}ller, Peter and Zhang, Song},
+  journal={Journal of the Royal Statistical Society: Series B (Statistical Methodology)},
+  volume={71},
+  number={5},
+  pages={905--925},
+  year={2009},
+  publisher={Wiley Online Library}
+}
+
+@article{guo2010multiplicity,
+  title={Multiplicity-calibrated Bayesian hypothesis tests},
+  author={Guo, Mengye and Heitjan, Daniel F},
+  journal={Biostatistics},
+  volume={11},
+  number={3},
+  pages={473--483},
+  year={2010},
+  publisher={Oxford University Press}
+}
+
+@article{kachiashvili2012sensitivity,
+  title={Sensitivity analysis of classical and conditional Bayesian problems of many hypotheses testing},
+  author={Kachiashvili, KJ and Hashmi, MA and Mueed, A},
+  journal={Communications in Statistics-Theory and Methods},
+  volume={41},
+  number={4},
+  pages={591--605},
+  year={2012},
+  publisher={Taylor \& Francis}
+}
+@article{kachiashvili2013conditional,
+  title={Conditional Bayesian task of testing many hypotheses},
+  author={Kachiashvili, KJ and Mueed, A},
+  journal={Statistics},
+  volume={47},
+  number={2},
+  pages={274--293},
+  year={2013},
+  publisher={Taylor \& Francis}
+}
+@article{kachiashvili2014methods,
+  title={The methods of sequential analysis of Bayesian type for the multiple testing problem},
+  author={Kachiashvili, KJ},
+  journal={Sequential Analysis},
+  volume={33},
+  number={1},
+  pages={23--38},
+  year={2014},
+  publisher={Taylor \& Francis}
+}
+
+
+% Berger Wolpert et al. paper on unifying conditional (!) frequentist & Bayesian testing
+@article{berger1994unified,
+	title={A unified conditional frequentist and Bayesian test for fixed and sequential simple hypothesis testing},
+	author={Berger, James O and Brown, Lawrence D and Wolpert, Robert L},
+	journal={The Annals of Statistics},
+	pages={1787--1807},
+	year={1994},
+	publisher={JSTOR}
+}
+
+% Another paper on similar topics
+@article{berger1997unified,
+  title={Unified frequentist and Bayesian testing of a precise hypothesis},
+  author={Berger, James O and Boukai, Ben and Wang, Yinping},
+  journal={Statistical Science},
+  volume={12},
+  number={3},
+  pages={133--160},
+  year={1997},
+  publisher={Institute of Mathematical Statistics}
+}
+
+@article{berger1999simultaneous,
+  title={Simultaneous Bayesian-frequentist sequential testing of nested hypotheses},
+  author={Berger, James O and Boukai, Benzion and Wang, Yinping},
+  journal={Biometrika},
+  volume={86},
+  number={1},
+  pages={79--92},
+  year={1999},
+  publisher={Oxford University Press}
+}
+
+% Berger Wolpert likelihood principle
+@inproceedings{berger1988likelihood,
+  title={The likelihood principle},
+  author={Berger, James O and Wolpert, Robert L},
+  year={1988},
+  organization={IMS}
+}
+
+% Berger book that includes multiple testing theory
+@book{berger2013statistical,
+  title={Statistical decision theory and Bayesian analysis},
+  author={Berger, James O},
+  year={2013},
+  publisher={Springer Science \& Business Media}
+}
+
+% Other papers on properties of Bayesian sequential testing
+@article{arrow1949bayes,
+  title={Bayes and minimax solutions of sequential decision problems},
+  author={Arrow, Kenneth J and Blackwell, David and Girshick, Meyer A},
+  journal={Econometrica, Journal of the Econometric Society},
+  pages={213--244},
+  year={1949},
+  publisher={JSTOR}
+}
+
+@article{barnard1946sequential,
+  title={Sequential tests in industrial statistics},
+  author={Barnard, George A},
+  journal={Supplement to the Journal of the Royal Statistical Society},
+  volume={8},
+  number={1},
+  pages={1--21},
+  year={1946},
+  publisher={Wiley Online Library}
+}
+
+
+%  old Bayesian sequential design paper 
+% matches decision boundaries to frequentist decision errors
+% and emphasize non-zero(!!!) prior prob on null (esp. for point null)
+@article{cornfield1966bayesian,
+	title={A Bayesian test of some classical hypotheses—with applications to sequential clinical trials},
+	author={Cornfield, Jerome},
+	journal={Journal of the American Statistical Association},
+	volume={61},
+	number={315},
+	pages={577--594},
+	year={1966},
+	publisher={Taylor \& Francis}
+}
+
+% old, short paper on Bayesian sequential analysis
+@article{wetherill1961bayesian,
+	title={Bayesian sequential analysis},
+	author={Wetherill, GB},
+	journal={Biometrika},
+	volume={48},
+	number={3/4},
+	pages={281--292},
+	year={1961},
+	publisher={JSTOR}
+}
+
+
+
+% Mike's book on bayesian dynamical models
+@book{west2006bayesian,
+	title={Bayesian forecasting and dynamic models},
+	author={West, Mike and Harrison, Jeff},
+	year={2006},
+	publisher={Springer Science \& Business Media}
+}
+
+
+% Jeffreys' big book
+@book{jeffreys1998theory,
+	title={The theory of probability},
+	author={Jeffreys, Harold},
+	year={1998},
+	publisher={OUP Oxford}
+}
+
+% Bayes factor paper
+@article{kass1995bayes,
+	title={Bayes factors},
+	author={Kass, Robert E and Raftery, Adrian E},
+	journal={Journal of the american statistical association},
+	volume={90},
+	number={430},
+	pages={773--795},
+	year={1995},
+	publisher={Taylor \& Francis}
+}
+
+% Generalized Bayes without likelihood function (or data model)
+@article{lyddon2019general,
+	title={General Bayesian updating and the loss-likelihood bootstrap},
+	author={Lyddon, SP and Holmes, CC and Walker, SG},
+	journal={Biometrika},
+	volume={106},
+	number={2},
+	pages={465--478},
+	year={2019},
+	publisher={Oxford University Press}
+}
+@article{turner2014generalized,
+	title={A generalized, likelihood-free method for posterior estimation},
+	author={Turner, Brandon M and Sederberg, Per B},
+	journal={Psychonomic bulletin \& review},
+	volume={21},
+	number={2},
+	pages={227--250},
+	year={2014},
+	publisher={Springer}
+}
+% the Bissiri generalized Bayes framework
+% that only needs loss functions without specification of the true sampling distribution
+@article{bissiri2016general,
+	title={A general framework for updating belief distributions},
+	author={Bissiri, Pier Giovanni and Holmes, Chris C and Walker, Stephen G},
+	journal={Journal of the Royal Statistical Society. Series B, Statistical methodology},
+	volume={78},
+	number={5},
+	pages={1103},
+	year={2016},
+	publisher={Wiley-Blackwell}
+}
+
+
