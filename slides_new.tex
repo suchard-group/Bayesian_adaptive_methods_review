@@ -1,0 +1,475 @@
+% updated review slides with OHDSI template
+\documentclass[11pt
+%,serif,marthserif
+,fragile=singleslide
+%%dvips
+%%,draft
+,xcolor=dvipsnames
+]{beamer}
+
+%% include the preamble and all setup
+\input{setup.tex}
+
+% Specifiy title here
+\title[
+Bayesian Adaptive Methods Review
+]
+{
+A First Look at the Bayesian Adaptive Methods Landscape
+}
+\subtitle
+{} % (optional subtitle)
+
+\author{Fan Bu}
+
+\institute[UCLA] % (optional, but mostly needed)
+{
+	Departments of Human Genetics \\
+	David Geffen School of Medicine at UCLA
+	% - Use the \inst command only if there are several affiliations.
+	% - Keep it simple, no one is interested in your street address.
+}
+\date{Oct 19, 2021}
+
+
+% start the slides
+\begin{document}
+	
+	\begin{frame}
+		%  \titlepage
+		\begin{columns}
+			\begin{column}{0.33\textwidth}
+				\includegraphics[width=1.0\textwidth]{figures/logo_title_page}
+			\end{column}
+			\begin{column}{0.66\textwidth}
+				\begin{center}
+					{\LARGE
+						A First Look at the Bayesian Adaptive Methods Landscape } \\[2em]
+					
+						Fan Bu \\[1em]
+						Departments of Human Genetics \\
+						David Geffen School of Medicine at UCLA
+					%				}
+				\end{center}
+			\end{column}
+		\end{columns}
+		\vspace{1em}
+		\vspace{1em}
+		
+	\end{frame}
+	
+	
+	\begin{frame}{Overview}
+		% Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+		\tableofcontents
+	\end{frame}
+	
+	%------------------------------------------------
+	\section{Basics of Bayesian hypothesis testing}
+	%------------------------------------------------
+	
+%	\begin{frame}
+%		\Huge{\centerline{Basics of Bayesian hypothesis testing}}
+%	\end{frame}
+	
+	\begin{frame}{Basic setup}
+		\begin{itemize}
+			\item Observe data $X$  $ \sim p(x \mid \theta)$ (data model) with parameter $\theta$
+			\item Wish to test 
+			\begin{equation*}
+			H_0: \theta \in \Theta_0 \qquad \text{ v.s. } \qquad H_1: \theta \in \Theta_1
+			\end{equation*}
+			\vspace{-0.2in}
+			\pause
+			\item prior beliefs about the hypotheses: 
+			\begin{itemize}
+				\item $p := P(H_0)$
+				\item then $1-p = P(H_1)$
+			\end{itemize}
+			\item priors for $\theta$: $\pi_i$ under $H_i$ ($i=0,1$)
+		\end{itemize}
+	
+	\vfill
+	\rule{0.6\textwidth}{0.4pt}
+	
+	\footnotesize{
+	Example:\\
+	$x =$ EHR data; $\theta =$ safety relative risk; $p(x \mid \theta) = $ self-controlled case series model;\\
+	$H_0: \theta = 0$ (same as baseline risk), $H_1: \theta > 0$ (elevated risk).
+}
+		
+	\end{frame}
+	
+	\begin{frame}{Evidence checking via posterior inference}
+		\begin{itemize}
+			\item posterior distribution for $\theta$ under $H_i$ ($i=0,1$):
+			\begin{equation*}
+			p(\theta \mid x, H_i) = \frac{p(x \mid \theta) \pi_i(\theta)}{m_i(x)};
+			\end{equation*}
+			\item $m_i(x) = \int p(x \mid \theta) p(\theta \mid x, H_i) d\theta$: \textcolor{Cerulean}{data evidence} for $H_i$. 
+			\pause
+			\item posterior odds in favor of $H_0$:
+			\begin{equation*}
+			\frac{P(H_0 \mid x)}{P(H_1 \mid x)} = \frac{m_0(x) p}{m_1(x) (1-p)} = \frac{m_0(x)}{m_1(x)} \frac{p}{1-p};
+			\end{equation*}
+			\pause
+			\item \textcolor{Cerulean}{Bayes factor} in favor of $H_0$ \footnote{Also the posteriors odds when $p=1/2$.}:
+			\begin{equation*}
+			\label{eq:bayes-factor}
+			BF_{01} = \frac{m_0(x)}{m_1(x)}.
+			\end{equation*}
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Decision making}
+		
+		\begin{table}
+			\centering
+			\begin{tabular}{lll}
+				\toprule
+				Quantity & Threshold & Reject $H_0$ if ... \\
+				\midrule
+				$BF_{01}$ & $A$ ($< 1$) &   $BF_{01} < A$\\
+				$P(H_0 \mid x)$ &  $\delta_L$ (small prob.) & $P(H_0 \mid x) < \delta_L$\\
+				\bottomrule
+			\end{tabular}
+			
+		\end{table}
+		
+%		\begin{itemize}
+%%			\item For simple v.s. simple hypothesis testing, BF is same as likelihood ratio:
+%%			\begin{equation*}
+%%			BF_{01} = \frac{p(x \mid \theta_0)}{p(x \mid \theta_1)}.
+%%			\end{equation*}
+%%			\pause
+%			\item With threshold $A$, reject $H_0$ if $BF_{01} < A$;
+%			\item Equivalently, with threshold $\delta_L$, reject $H_0$ if $P(H_0 \mid x) < \delta_L$.
+%		\end{itemize}
+	
+	\vfill
+	\rule{0.6\textwidth}{0.4pt}
+	
+	\footnotesize{
+		Example:\\
+		If $BF_{01} < 1/10$, reject $H_0$ $\rightarrow$ claim elevated risk;\\
+		Or, claim elevated risk if $P(H_0 \mid x) < 0.1$.
+	}
+	
+	\end{frame}
+
+
+%------------------------------------------------
+\section{Bayesian sequential testing}
+%------------------------------------------------
+
+%\begin{frame}
+%	\Huge{\centerline{Bayesian sequential testing}}
+%\end{frame}
+
+\begin{frame}{Bayesian analysis is intrinsically sequential}
+	A current ``posterior'' can become the ``\textcolor{Cerulean}{prior}'' for future inference. 
+	\only<1>{
+		\begin{figure}
+			\centering
+			%\vspace{-0.1in}
+			\includegraphics[width=0.82\textwidth, page=1, trim=0 0 0.5in 0.5in, clip]{figures/Bayesian_sequential_updating.pdf}
+		\end{figure}
+	}
+	\only<2>{
+		\begin{figure}
+			\centering
+			%\vspace{-0.1in}
+			\includegraphics[width=0.82\textwidth, page=2, trim=0 0 0.5in 0.5in, clip]{figures/Bayesian_sequential_updating.pdf}
+		\end{figure}
+	}
+%	\only<3>{
+%		\begin{figure}
+%			\centering
+%			%\vspace{-0.1in}
+%			\includegraphics[width=0.82\textwidth, page=3, trim=0 0 0.5in 0.5in, clip]{figures/Bayesian_sequential_updating.pdf}
+%		\end{figure}
+%	}
+	\only<3>{
+		\begin{figure}
+			\centering
+			%\vspace{-0.1in}
+			\includegraphics[width=0.82\textwidth, page=4, trim=0 0 0.5in 0.5in, clip]{figures/Bayesian_sequential_updating.pdf}
+		\end{figure}
+	}
+	
+\end{frame}
+
+\begin{frame}{How it usually works}
+	Check Bayes factor $BF_{01}^{(n)}$ at step $n$ until it hits a boundary. \footnote{See, for example, \cite{barnard1946sequential,wetherill1961bayesian,berger1994unified,berger1988likelihood,berger1997unified,berger1999simultaneous}.}
+%	Given thresholds $B \geq 1 \geq A$, with Bayes factor $BF_{01}^{(n)}$ acquired at step $n$ :
+%	\begin{itemize}
+%		\item if $BF_{01}^{(n)} > B$, stop the study and accept $H_0$;
+%		\item if $A < BF_{01}^{(n)} < B$, continue the study;
+%		\item  if $BF_{01}^{(n)} < A$, stop the study and reject $H_0$.
+%	\end{itemize}
+
+\begin{figure}
+	\includegraphics[width=0.83\textwidth, trim=0 7.3in 0 0.3in, clip]{figures/Bayes_Factor_Sequential_Testing.pdf}
+\end{figure}
+	
+	\pause
+	\vspace{0.15in}
+	\footnotesize{
+	(Can use posterior probability $P(H_0 \mid x)$ or $P(H_1 \mid x)$ too (e.g., \cite{cornfield1966bayesian}).)
+}
+	
+\end{frame}
+
+%------------------------------------------------
+\section{Examples of Bayesian adaptive methods application}
+%------------------------------------------------
+
+%\begin{frame}
+%	\Huge{Examples of Bayesian adaptive methods application}
+%\end{frame}  
+
+\begin{frame}{The setup}
+	\begin{itemize}
+		\item Compare effect $\theta$ with baseline $\theta_0$:
+		\begin{equation*}
+		H_0: \theta \leq \theta_0 \qquad \text{ v.s. } \qquad H_1: \theta > \theta_0.
+		\end{equation*}
+		\pause
+		\item Or, consider a ``minimal practical increase'' $\delta$:
+		\begin{equation*}
+		H_0: \theta \leq \theta_0 + \delta \qquad \text{ v.s. } \qquad H_1: \theta > \theta_0 + \delta.
+		\end{equation*}
+	\end{itemize}
+
+	\vfill
+\rule{0.6\textwidth}{0.4pt}
+
+\footnotesize{
+	Example:\\
+	$\theta =$ safety relative risk, $\theta_0 = 0$; \\
+	$H_0$: increase 0 or negligible, $H_1$: significant elevated risk.
+}
+	
+\end{frame}
+
+\begin{frame}{Binary decisions}
+%	\begin{itemize}
+%		\item Specify lower and upper probability bounds $\delta_L$ and $\delta_U$;
+%		\item \textbf{Early stopping for signal} if $P(H_1 \mid x) > \delta_U$;
+%		\item \textbf{Early stopping for futility} if $P(H_1 \mid x) < \delta_L$. 
+%		\item Common choice: $\delta_L = 0.05, 0.1$, $\delta_U = 0.8, 0.95$, OR calibrated through simulations.
+%		
+%	\end{itemize}
+
+	\begin{table}
+	\centering
+	\begin{tabular}{lll}
+		\toprule
+		Threshold & Stop if ...  & Conclusion\\
+		\midrule
+		$\delta_L$ (lower) & $P(H_1 \mid x) < \delta_L$ &   futility \\
+		$\delta_U$ (upper) & $P(H_1 \mid x) > \delta_U$  &  signal \\
+		\bottomrule
+	\end{tabular}
+	
+	\end{table}
+
+\pause
+\vspace{0.15in}
+Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smith2006implementation,zhou2008bayesian,berry2010bayesian,li2020bayesian}, etc.}:
+\begin{itemize}
+	\item $\delta_L = 0.05, 0.1$; $\delta_U = 0.8, 0.95$.
+	\item Or, calibrated through simulations.
+\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Non-binary decisions}
+	
+	Can give verbal labels about the \textcolor{Cerulean}{strength of evidence} in support of, e.g., $H_1$, based on  $BF_{10}$.  \cite{jeffreys1998theory,kass1995bayes,schonbrodt2017sequential}
+	
+	 \begin{table}
+	 	\centering
+	 	\begin{tabular}{ll}
+	 		\toprule
+	 		$BF_{10}$ range & Evidence strength in favor of $H_1$ \\
+	 		\midrule
+	 		$(1, 3)$ &  \textcolor{Cerulean}{anecdotal} evidence \\
+	 		$(3, 10)$ &  \textcolor{Cerulean}{moderate} evidence \\
+	 		$(10, 30)$ &  \textcolor{Cerulean}{strong} evidence \\
+	 		$> 30$ &  \textcolor{Cerulean}{very strong} evidence\\
+	 		\bottomrule
+	 	\end{tabular}
+	 	
+	 \end{table}
+	 
+	%We can draw different conclusions about the strength of evidence in support of either hypothesis. 
+	
+%	\vspace{0.2in}
+%	Decisions based on $BF_{10}$ (Bayes factor in favor of $H_1$)
+%	\cite{jeffreys1998theory,kass1995bayes,schonbrodt2017sequential}:
+%	\begin{itemize}
+%		\item  $1 < BF_{10} < 3$: anecdotal evidence
+%		\item  $3 < BF_{10} < 10$: moderate evidence
+%		\item $10 <	BF_{10} < 30$: strong evidence
+%		\item $BF_{10} > 30$ very strong evidence. 
+%	\end{itemize}
+
+	\vfill
+\rule{0.6\textwidth}{0.4pt}
+
+\footnotesize{
+	Example:\\
+	$\theta =$ safety relative risk, $\theta_0 = 0$; \\
+	$H_0$: increase 0 or negligible, $H_1$: significant elevated risk.\\
+	If $BF_{10} > 10$, we say ``there is strong evidence indicating a safety signal''.
+}
+	
+\end{frame}
+
+\begin{frame}{Non-binary decisions (Cont'd) - zone method}
+	Given \textcolor{Cerulean}{indifference zone} $[\delta_L, \delta_U]$,  make decisions based on credible interval for $\Delta = \theta - \theta_0$ \cite{berry2010bayesian}. 
+	
+	\begin{figure}
+		\centering
+		%\vspace{-0.1in}
+		\includegraphics[width=0.88\textwidth, page=5, trim=0 1in 0 1in, clip]{figures/Bayesian_sequential_updating.pdf}
+	\end{figure}
+\end{frame}
+	
+	
+%------------------------------------------------
+\section{Methodological gaps BST can address}
+%------------------------------------------------
+
+%\begin{frame}
+%	\Huge{\centerline{Advantages and methodological gaps}}
+%\end{frame}  
+
+\begin{frame}{Advantages}
+	\begin{itemize}
+		\item Easy to incorporate \textcolor{Cerulean}{historical data} through priors.
+		\only<1>{
+		\begin{itemize}
+			\item e.g., 10 out of 1000 subjects in historical data had an adverse event,  then can use $\text{Beta}(10,990)$ prior for incidence rate $\theta$;
+			\item can \textcolor{Cerulean}{discount} prior to address temporal changes \cite{west2006bayesian}.
+		\end{itemize}
+	}
+		\pause
+		\item Can test multiple hypotheses (e.g., detect \textcolor{Cerulean}{multiple safety signals}) simultaneously. \cite{gopalan1998bayesian,berry1999bayesian,scott2006exploration,labbe2007multiple,guo2010multiplicity,kachiashvili2012sensitivity,kachiashvili2013conditional,kachiashvili2014methods,berger2013statistical}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Advantages}
+	\begin{itemize}
+		\only<1>{
+		\item Can incorporate \textcolor{Cerulean}{model selection/averaging} within the Bayesian framework (e.g., \cite{raftery1995bayesian,wasserman2000bayesian,chipman2001practical,stephan2009bayesian,wathen2008bayesian,senarathne2020laplace})
+	}
+	\pause
+		\item Non-violation of \textcolor{Cerulean}{the likelihood principle}.
+%		\begin{itemize}
+%			\item ``Given a statistical model, all information relavent to inferences about model parameters $\theta$ is contained in the likelihood function $L(\theta ; x)$'';
+%			\item ``If two likelihood functions $L_1(\theta ; x)$ and $L_2(\theta ; x)$ are proportional then they contain same information about $\theta$''.
+%			\item Conclusions about a study shouldn't depend on how we look at the data or how we decide when to stop - frequentist sequential analysis clearly violates this
+%			\item Bayesian analysis respects the likelihood principle
+%		\end{itemize}
+	\begin{figure}
+		\centering
+		\only<2>{
+		\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=1 ]{figures/Likelihood_principle_diagram.pdf}
+		}
+		\only<3>{
+			\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=2 ]{figures/Likelihood_principle_diagram.pdf}
+		}
+
+	\end{figure}
+
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Potential challenges}
+	\begin{itemize}
+		\item Calibration of the thresholds
+		\begin{itemize}
+			\item No universal rule (like $\alpha = 0.05$)
+			\item Theoretical results available for matching frequentist error rate bounds for \textcolor{Cerulean}{simple models} (e.g.,\cite{berger1994unified, cornfield1966bayesian})
+			\pause
+			\item Can use simulation-based or data-driven calibration (\textcolor{Cerulean}{negative/positive controls} utilizing OHDSI network) to satisfy frequentist operating characteristics requirements 
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{Potential challenges}
+	\begin{itemize}
+		\item Model-free or likelihood-free cases
+		\begin{itemize}
+			\item when a data model cannot be easily specified 
+			\item or a likelihood function doesn't exist
+			\item traditional Bayesian approach can't be applied
+			\pause
+			\item \textcolor{Cerulean}{generalized Bayesian} methods might be employed (e,g., \cite{turner2014generalized, lyddon2019general, bissiri2016general}).
+		\end{itemize}
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}
+	\Huge{\centerline{Thank you!}}
+\end{frame}
+
+% Backup slides
+
+\begin{frame}
+	\Huge{\centerline{Backup slides}}
+\end{frame}
+
+
+\begin{frame}{An example of the likelihood principle}
+	\begin{itemize}
+		\item Two scientists collect binary data $X_i \sim \text{Bernoulli}(\theta)$
+		\item Test $H_0: \theta = 0.5$ v.s. $H_1: \theta > 0.5$
+		\item Had the same student conduct the experiment and observe $X_1, X_2, \ldots$
+		\item Both decide to stop the study after collecting 12 data points
+	\end{itemize}
+	
+
+\end{frame}
+
+\begin{frame}{An example of the likelihood principle}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=\textwidth, trim=0 2in 2.5in 0.5in, clip]{figures/Likelihood_principle_example_1.pdf}
+			\end{figure}
+		\end{column}
+	~
+		\begin{column}{0.39\textwidth}
+		\begin{itemize}
+			\item They reach \textcolor{Cerulean}{different} conclusions about $\theta$
+			\item Even with \textcolor{Cerulean}{proportional} likelihoods!
+			\item (Both $\propto \theta^9 (1-\theta)^3$)
+		\end{itemize}
+		\vspace{2.3in}
+		\end{column}
+		\end{columns}
+\end{frame}
+
+
+	
+	
+	% References
+	\begin{frame}[allowframebreaks]
+		\frametitle{References}
+		\bibliographystyle{amsalpha}
+		\bibliography{ref.bib}
+	\end{frame}
+	
+	%END
+	
+\end{document}
