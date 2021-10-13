@@ -377,12 +377,22 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 %		\end{itemize}
 	\begin{figure}
 		\centering
-		\only<2>{
-		\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=1 ]{figures/Likelihood_principle_diagram.pdf}
-		}
-		\only<3>{
-			\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=2 ]{figures/Likelihood_principle_diagram.pdf}
-		}
+		% commented out hand-drawing
+%		\only<2>{
+%		\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=1 ]{figures/Likelihood_principle_diagram.pdf}
+%		}
+%		\only<3>{
+%			\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=2 ]{figures/Likelihood_principle_diagram.pdf}
+%		}
+	\only<2>{
+	\includegraphics[width=0.82\textwidth, trim = 0.5in 0in 0in 0.5in,clip, page=1]{figures/Likelihood_principle.pdf}
+	}
+	\only<3>{
+		\includegraphics[width=0.82\textwidth, trim = 0.5in 0in 0in 0.5in,clip, page=2]{figures/Likelihood_principle.pdf}
+	}		
+	\only<4>{
+		\includegraphics[width=0.82\textwidth,  trim = 0.5in 0in 0in 0.5in,clip,page=3]{figures/Likelihood_principle.pdf}
+	}	
 
 	\end{figure}
 
@@ -445,7 +455,9 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 		\begin{column}{0.6\textwidth}
 			\begin{figure}
 				\centering
-				\includegraphics[width=\textwidth, trim=0 2in 2.5in 0.5in, clip]{figures/Likelihood_principle_example_1.pdf}
+				% commented out hand-drawing text
+				%\includegraphics[width=\textwidth, trim=0 2in 2.5in 0.5in, clip]{figures/Likelihood_principle_example_1.pdf}
+				\includegraphics[width=\textwidth, trim=1.3in 0in 1.5in 0in, clip, page=4]{figures/Likelihood_principle.pdf}
 			\end{figure}
 		\end{column}
 	~
@@ -455,7 +467,7 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 			\item Even with \textcolor{Cerulean}{proportional} likelihoods!
 			\item (Both $\propto \theta^9 (1-\theta)^3$)
 		\end{itemize}
-		\vspace{2.3in}
+		%\vspace{2.3in}
 		\end{column}
 		\end{columns}
 \end{frame}
