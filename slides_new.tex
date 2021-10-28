@@ -123,19 +123,41 @@ A First Look at the Bayesian Adaptive Methods Landscape
 	\end{frame}
 	
 	\begin{frame}{Decision making}
-		
+		\only<1>{
 		\begin{table}
 			\centering
 			\begin{tabular}{lll}
 				\toprule
 				Quantity & Threshold & Reject $H_0$ if ... \\
 				\midrule
+				
 				$BF_{01}$ & $A$ ($< 1$) &   $BF_{01} < A$\\
-				$P(H_0 \mid x)$ &  $\delta_L$ (small prob.) & $P(H_0 \mid x) < \delta_L$\\
+				\textcolor{gray!50}{
+				$P(H_0 \mid x)$} &  \textcolor{gray!50}{$\delta_L$ (small prob.)} & \textcolor{gray!50}{$P(H_0 \mid x) < \delta_L$}\\
 				\bottomrule
 			\end{tabular}
 			
 		\end{table}
+	}
+
+	\only<2>{
+	\begin{table}
+		\centering
+		\begin{tabular}{lll}
+			\toprule
+			Quantity & Threshold & Reject $H_0$ if ... \\
+			\midrule
+			
+			\textcolor{gray!50}{$BF_{01}$} & \textcolor{gray!50}{$A$ ($< 1$)} &   \textcolor{gray!50}{$BF_{01} < A$}\\
+			
+				$P(H_0 \mid x)$ &  $\delta_L$ (small prob.) & $P(H_0 \mid x) < \delta_L$\\
+			\bottomrule
+		\end{tabular}
+		
+	\end{table}
+
+
+}
 		
 %		\begin{itemize}
 %%			\item For simple v.s. simple hypothesis testing, BF is same as likelihood ratio:
@@ -201,7 +223,7 @@ A First Look at the Bayesian Adaptive Methods Landscape
 \end{frame}
 
 \begin{frame}{How it usually works}
-	Check Bayes factor $BF_{01}^{(n)}$ at step $n$ until it hits a boundary. \footnote{See, for example, \cite{barnard1946sequential,wetherill1961bayesian,berger1994unified,berger1988likelihood,berger1997unified,berger1999simultaneous}.}
+	Check Bayes factor $BF_{01}^{(n)}$ at step $n$ until it hits a boundary. \footnote{See, for example, \cite{barnard1946sequential,wetherill1961bayesian,berger1994unified,berger1988likelihood,berger1997unified,berger1999simultaneous,jha2009bayesian}.}
 %	Given thresholds $B \geq 1 \geq A$, with Bayes factor $BF_{01}^{(n)}$ acquired at step $n$ :
 %	\begin{itemize}
 %		\item if $BF_{01}^{(n)} > B$, stop the study and accept $H_0$;
@@ -444,7 +466,9 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 		\item Two scientists collect binary data $X_i \sim \text{Bernoulli}(\theta)$
 		\item Test $H_0: \theta = 0.5$ v.s. $H_1: \theta > 0.5$
 		\item Had the same student conduct the experiment and observe $X_1, X_2, \ldots$
+		\pause
 		\item Both decide to stop the study after collecting 12 data points
+		\item 9 of which are successes
 	\end{itemize}
 	
 
