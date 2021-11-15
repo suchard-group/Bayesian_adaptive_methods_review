@@ -374,7 +374,7 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 		\item Easy to incorporate \textcolor{Cerulean}{historical data} through priors.
 		\only<1>{
 		\begin{itemize}
-			\item e.g., 10 out of 1000 subjects in historical data had an adverse event,  then can use $\text{Beta}(10,990)$ prior for incidence rate $\theta$;
+			\item e.g., \textcolor{Cerulean}{10} out of \textcolor{Cerulean}{1000} subjects in historical data had an adverse event,  then can use \textcolor{Cerulean}{$\text{Beta}(10,990)$} prior for incidence rate $\theta$;
 			\item can \textcolor{Cerulean}{discount} prior to address temporal changes \cite{west2006bayesian}.
 		\end{itemize}
 	}
@@ -388,9 +388,19 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 	\begin{itemize}
 		\only<1>{
 		\item Can incorporate \textcolor{Cerulean}{model selection/averaging} within the Bayesian framework (e.g., \cite{raftery1995bayesian,wasserman2000bayesian,chipman2001practical,stephan2009bayesian,wathen2008bayesian,senarathne2020laplace})
-	}
-	\pause
+		}
+		\only<2>{
+		\item Allows \textcolor{Cerulean}{accepting} $H_0$ (no risk claim) given quantification of data evidence strength
+		\begin{itemize}
+		    \item Technically not do-able in the frequentist framework
+		\end{itemize}
+	    }
+% 	\only<2>{
+% 	    \item Allows an option of \textcolor{Cerulean}{accepting} $H_0$ (no risk claim) given quantification of data evidence strength
+% 	}
+    \onslide<3-5>{
 		\item Non-violation of \textcolor{Cerulean}{the likelihood principle}.
+	}
 %		\begin{itemize}
 %			\item ``Given a statistical model, all information relavent to inferences about model parameters $\theta$ is contained in the likelihood function $L(\theta ; x)$'';
 %			\item ``If two likelihood functions $L_1(\theta ; x)$ and $L_2(\theta ; x)$ are proportional then they contain same information about $\theta$''.
@@ -406,13 +416,13 @@ Common threshold choice \footnote{See, for example, \cite{thall1995bayesian,smit
 %		\only<3>{
 %			\includegraphics[width=0.85\textwidth, trim = 0.5in 3.2in 1.3in 0.2in, clip, page=2 ]{figures/Likelihood_principle_diagram.pdf}
 %		}
-	\only<2>{
+	\only<3>{
 	\includegraphics[width=0.82\textwidth, trim = 0.5in 0in 0in 0.5in,clip, page=1]{figures/Likelihood_principle.pdf}
 	}
-	\only<3>{
+	\only<4>{
 		\includegraphics[width=0.82\textwidth, trim = 0.5in 0in 0in 0.5in,clip, page=2]{figures/Likelihood_principle.pdf}
 	}		
-	\only<4>{
+	\only<5>{
 		\includegraphics[width=0.82\textwidth,  trim = 0.5in 0in 0in 0.5in,clip,page=3]{figures/Likelihood_principle.pdf}
 	}	
 
