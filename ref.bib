@@ -43,9 +43,10 @@
 	organization={Springer}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% edited on 11/15/2021 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% vaccine safety related papers %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % specifically on vaccine safety surveillance
 % a nice intro reviewing limitations of MaxSPRT
 % with details on how to do BST for Poisson and Binom model
@@ -64,7 +65,17 @@
 }
 
 % a nice paper reviewing Bayesian methods for pharmacovigilance
-% also develops Bayesian methods of SCCS (Poisson regression)
+% also develops Bayesian methods of SCCS (Poisson process) 
+% (1) one drug one AE case
+% (2) multi drug one AE case
+% (assume constant risk every day, 
+% & when assuming AE can occur at most once each day, can use logistic likelihood as well)
+
+% extensions
+% (1) hierarchical model on drug classes (drugs in same class may have common prior for adverse effect coefs)
+% (2) hierarchical model on AEs (AEs in same group may have common prior of risks in response to the same drug/drug class)
+% (3) relax independence assumption for events and subsequent exposures
+
 @article{madigan2010bayesian,
   title={Bayesian methods in pharmacovigilance},
   author={Madigan, David and Ryan, Patrick and Simpson, Shawn and Zorych, Ivan},
@@ -74,6 +85,53 @@
   year={2010}
 }
 
+% NOT for post-licensure surveillance (clinical trials)
+% but an example of comparing Bayesian & frequentist methods
+% when the observed rates are extreme (0 or 100%) - but the true effect may not be extreme
+% the shrinkage effect of Bayesian analysis can produce more reasonable estimates and credible intervals
+@article{liu2015evaluation,
+  title={Evaluation of vaccine seroresponse rates and adverse event rates through Bayesian and frequentist methods},
+  author={Liu, Jin and Chen, Feng and Zhu, Feng-Cai and Bai, Jian-Ling and Li, Jing-Xin and Yu, Hao and Liu, Pei and Zeng, Ping},
+  journal={Human vaccines \& immunotherapeutics},
+  volume={11},
+  number={6},
+  pages={1557--1563},
+  year={2015},
+  publisher={Taylor \& Francis}
+}
+
+%% There are a lot of BAYESIAN META-ANALYSIS approaches used for evidence synthesis
+% across data sources or across studies
+% a foundation paper on using Bayesian meta-analysis
+@article{sutton2001bayesian,
+  title={Bayesian methods in meta-analysis and evidence synthesis},
+  author={Sutton, Alex J and Abrams, Keith R},
+  journal={Statistical methods in medical research},
+  volume={10},
+  number={4},
+  pages={277--303},
+  year={2001},
+  publisher={Sage Publications Sage CA: Thousand Oaks, CA}
+}
+
+% Some examples include:
+@article{shire2006efficacy,
+  title={Efficacy of inactivated hepatitis A vaccine in HIV-infected patients: a hierarchical bayesian meta-analysis},
+  author={Shire, Norah J and Welge, Jeffrey A and Sherman, Kenneth E},
+  journal={Vaccine},
+  volume={24},
+  number={3},
+  pages={272--279},
+  year={2006},
+  publisher={Elsevier}
+}
+@article{huang2021comparative,
+  title={The comparative safety of human papillomavirus vaccines: A Bayesian network meta-analysis},
+  author={Huang, Rongdong and Gan, Ruihuan and Zhang, Dongjuan and Xiao, Jianxiong},
+  journal={Journal of Medical Virology},
+  year={2021},
+  publisher={Wiley Online Library}
+}
 
 
 
