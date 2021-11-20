@@ -85,6 +85,7 @@
   year={2010}
 }
 
+
 % NOT for post-licensure surveillance (clinical trials)
 % but an example of comparing Bayesian & frequentist methods
 % when the observed rates are extreme (0 or 100%) - but the true effect may not be extreme
@@ -134,6 +135,25 @@
 }
 
 
+%%% AND a lot of use of empirical Bayes data mining (?)
+% NOT exactly sequential analysis of data
+% but seems to be widely used and cited a lot
+% fitting an empirical Bayesian model on two-way contingency tables of exposure-AE
+% and rank those counts in terms of interestingness
+% old paper, used a lot in mining info from spontaneous reporting systems
+article{dumouchel1999bayesian,
+  title={Bayesian data mining in large frequency tables, with an application to the FDA spontaneous reporting system},
+  author={DuMouchel, William},
+  journal={The American Statistician},
+  volume={53},
+  number={3},
+  pages={177--190},
+  year={1999},
+  publisher={Taylor \& Francis}
+}
+
+
+%% Some model selection/ model choice work:
 
 % interesting method using MV normal approximation within SMC
 % includes model choice & design choice
@@ -254,7 +274,7 @@
 }
 
 % the modified SPRT (based on UMPBT-derived alternatives)
-% only works for z, t tests & binomial porportions, chi-square tests
+% only works for z, t tests & binomial proportions, chi-square tests
 % but works well
 @article{pramanik2021modified,
 	title={A modified sequential probability ratio test},
@@ -410,6 +430,45 @@
   year={1999},
   publisher={Oxford University Press}
 }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 11/15/2021 update %%%%
+% unification of Bayesian and frequentist tests %
+% some more recent developments %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% this paper also has a great intro and lit review
+% on the disagreement and attempted reconciliation between Bayes and frequentist testing procedures
+% introduce the notion of "composite p-value" for a "test statistic" defined using the Bayes factor (log_{10}(BF) > 2 then reject - Jeffreys)
+% with an example of calibration for post-market vaccine surveillance
+@article{silva2018correspondence,
+  title={On the correspondence between frequentist and Bayesian tests},
+  author={Silva, Ivair R},
+  journal={Communications in Statistics-Theory and Methods},
+  volume={47},
+  number={14},
+  pages={3477--3487},
+  year={2018},
+  publisher={Taylor \& Francis}
+}
+
+% another paper by same author
+% hybrid frequentist-Bayesian testing
+% Monte Carlo test -> simulate from the prior distribution under null
+% with test statistic defined in the Bayesian way
+@article{silva2020frequentist,
+  title={Frequentist-Bayesian Monte Carlo testing},
+  author={Silva, Ivair R and Marques, Reinaldo},
+  journal={Communications in Statistics-Theory and Methods},
+  volume={49},
+  number={10},
+  pages={2356--2364},
+  year={2020},
+  publisher={Taylor \& Francis}
+}
+
+
+
 
 % Berger Wolpert likelihood principle
 @inproceedings{berger1988likelihood,
